@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Employee List</h2>
+    <a href="{% url 'add_employee' %}" class="btn btn-primary">Add Employee</a>
+</div>
+
+<form method="GET" class="mb-3">
+    <div class="input-group">
+        <input type="text"
+               name="search"
+               class="form-control"
+               placeholder="Search Employee by Name"
+               value="{{ request.GET.search }}">
+
+        <button type="submit" class="btn btn-success">
+            Search
+        </button>
+
+        <a href="{% url 'employee_list' %}" class="btn btn-secondary">
+            Reset
+        </a>
+    </div>
+</form>
+
+<table class="table table-bordered table-striped table-hover">
+
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for employee in employees %}
+
+        <tr>
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.department }}</td>
+
+            <td>
+                <a href="{% url 'edit_employee' employee.id %}" class="btn btn-warning btn-sm">
+                    Edit
+                </a>
+
+                <a href="{% url 'delete_employee' employee.id %}" class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+        </tr>
+
+    {% empty %}
+
+        <tr>
+            <td colspan="5" class="text-center">
+                No Employees Found
+            </td>
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

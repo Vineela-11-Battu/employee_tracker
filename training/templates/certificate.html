@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<div class="card shadow p-5 text-center">
+
+<h1 class="text-primary">
+Certificate of Completion
+</h1>
+
+<hr>
+
+<h4>This is to certify that</h4>
+
+<h2>{{ enrollment.employee.name }}</h2>
+
+<p>has successfully completed the training</p>
+
+<h3 class="text-success">
+{{ enrollment.training.title }}
+</h3>
+
+<p>Status : {{ enrollment.status }}</p>
+<p>
+    Completion Date :
+    <strong>{{ enrollment.completed_date | date:"d-m-Y"}}</strong>
+</p>
+
+<br>
+
+<button class="btn btn-primary"
+onclick="window.print()">
+Print Certificate
+</button>
+
+</div>
+
+</div>
+
+{% endblock %}

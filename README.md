@@ -19,7 +19,6 @@ A Django-based web application for managing employees, training courses, enrollm
 - HTML
 - CSS
 - Bootstrap
-- SQLite
 
 ## Project Structure
 
